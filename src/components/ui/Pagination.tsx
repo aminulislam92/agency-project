@@ -16,7 +16,7 @@ interface PaginationProps {
 const itemBase =
   'inline-flex size-9 items-center justify-center rounded-md text-body-s font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
 
-/** Numbered pagination with prev/next arrows (spec: 36px squares, active = primary). */
+/** Numbered pagination; prev/next arrows appear only when there is somewhere to go (as in the design). */
 export function Pagination({
   page,
   totalPages,
@@ -28,19 +28,20 @@ export function Pagination({
   if (totalPages <= 1) return null
   const pages = getPageList(page, totalPages)
   const arrow =
-    'inline-flex size-6 items-center justify-center rounded-sm text-xl text-title transition-colors hover:text-primary disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-primary'
+    'inline-flex size-6 items-center justify-center rounded-sm text-xl text-title transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-primary'
 
   return (
     <nav aria-label={label} className={cn('flex items-center gap-2', className)}>
-      <button
-        type="button"
-        className={arrow}
-        onClick={() => onChange(page - 1)}
-        disabled={page <= 1}
-        aria-label={`Previous ${itemName}`}
-      >
-        <BiChevronLeft aria-hidden />
-      </button>
+      {page > 1 && (
+        <button
+          type="button"
+          className={arrow}
+          onClick={() => onChange(page - 1)}
+          aria-label={`Previous ${itemName}`}
+        >
+          <BiChevronLeft aria-hidden />
+        </button>
+      )}
       <ul className="flex items-center gap-2">
         {pages.map((item, index) =>
           item === 'ellipsis' ? (
@@ -67,15 +68,16 @@ export function Pagination({
           ),
         )}
       </ul>
-      <button
-        type="button"
-        className={arrow}
-        onClick={() => onChange(page + 1)}
-        disabled={page >= totalPages}
-        aria-label={`Next ${itemName}`}
-      >
-        <BiChevronRight aria-hidden />
-      </button>
+      {page < totalPages && (
+        <button
+          type="button"
+          className={arrow}
+          onClick={() => onChange(page + 1)}
+          aria-label={`Next ${itemName}`}
+        >
+          <BiChevronRight aria-hidden />
+        </button>
+      )}
     </nav>
   )
 }
