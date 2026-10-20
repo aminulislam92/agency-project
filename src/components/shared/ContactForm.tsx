@@ -103,6 +103,7 @@ export function ContactForm({
       <Textarea
         label="Message"
         placeholder={detailed ? 'Tell us about your project' : undefined}
+        rows={detailed ? 4 : 3}
         error={errors.message?.message}
         {...register('message')}
       />
