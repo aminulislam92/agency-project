@@ -10,13 +10,13 @@ export const MOCKS_ENABLED = import.meta.env.DEV
   : import.meta.env.VITE_ENABLE_MSW === 'true'
 
 export const SITE_NAME = 'Silicon'
-export const CONTACT_EMAIL = 'example@gmail.com'
+export const CONTACT_EMAIL = 'coderamin92@gmail.com'
 export const CONTACT_PHONE = '(406) 555-0120'
-export const CONTACT_PHONE_INTL = '+1 406 555-0120'
-export const CONTACT_ADDRESS = '2464 Royal Ln. Mesa, New Jersey 45463'
+export const CONTACT_PHONE_INTL = '+880 1740 855-599'
+export const CONTACT_ADDRESS = '11 Polashgor Rd, West Polashgor, Jamalpur 2000'
 
 /** Agency promo video (Home hero, About video section) */
-export const PROMO_VIDEO_URL = 'https://www.youtube-nocookie.com/embed/ScMzIvxBSi4'
+export const PROMO_VIDEO_URL = 'https://www.youtube.com/embed/WiQhl9hfki0?si=Df0VAEUWgiYdCRn5'
 
 /** Site credit shown in the copyright line */
 export const AUTHOR_NAME = 'Md. Aminul Islam'
