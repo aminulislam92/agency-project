@@ -41,6 +41,12 @@
   --color-warning: #ffba08;
   --color-info: #4c82f7;
 
+  /* Illustration accents (Service Details UI mockups, sampled from the design) */
+  --color-accent-pink: #ec4899;
+  --color-accent-sky: #38bdf8;
+  --color-accent-teal: #14b8a6;
+  --color-accent-night: #2a2540;
+
   /* Social brand colours (icon hover states) */
   --color-facebook: #1877f2;
   --color-instagram: #e4405f;
@@ -62,7 +68,7 @@
   --color-placeholder: var(--color-gray-500);
   --color-border: var(--color-gray-300);
   --color-input: var(--color-gray-400);
-  --color-inverse: var(--color-gray-900); /* dark bands (CTA)       */
+  --color-inverse: #171b24; /* dark CTA band (Service Details), sampled from the design */
 
   /* ---- Typography ------------------------------------------------------ */
   --text-display-1: 5rem; /* 80 */

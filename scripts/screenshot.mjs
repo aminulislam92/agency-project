@@ -38,7 +38,8 @@ for (const width of widths) {
   // Scroll through the page so lazy images and in-view animations settle
   await page.evaluate(async () => {
     const step = window.innerHeight / 2
-    for (let y = 0; y < document.body.scrollHeight; y += step) {
+    // Hard cap so a runaway layout (ever-growing page) fails fast instead of hanging
+    for (let y = 0, i = 0; y < document.body.scrollHeight && i < 200; y += step, i++) {
       window.scrollTo(0, y)
       await new Promise((resolve) => setTimeout(resolve, 60))
     }

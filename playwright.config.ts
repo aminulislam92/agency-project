@@ -3,6 +3,9 @@ import { defineConfig, devices } from '@playwright/test'
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
+  // The Vite dev server compiles routes on demand; keep load and timeouts realistic
+  workers: 4,
+  expect: { timeout: 10_000 },
   reporter: [['list']],
   use: {
     baseURL: 'http://localhost:5173',
