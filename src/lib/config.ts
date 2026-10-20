@@ -13,3 +13,6 @@ export const SITE_NAME = 'Silicon'
 export const CONTACT_EMAIL = 'example@gmail.com'
 export const CONTACT_PHONE = '(406) 555-0120'
 export const CONTACT_ADDRESS = '2464 Royal Ln. Mesa, New Jersey 45463'
+
+/** Agency promo video (Home hero, About video section) */
+export const PROMO_VIDEO_URL = 'https://www.youtube-nocookie.com/embed/ScMzIvxBSi4'

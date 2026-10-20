@@ -31,6 +31,11 @@ export default defineConfig({
               priority: 20,
             },
             { name: 'forms', test: /node_modules[\\/](zod|react-hook-form)[\\/]/, priority: 20 },
+            {
+              name: 'swiper',
+              test: /node_modules[\\/](swiper|ssr-window|dom7)[\\/]/,
+              priority: 20,
+            },
           ],
         },
       },

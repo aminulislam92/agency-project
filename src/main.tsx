@@ -1,6 +1,6 @@
 import '@fontsource-variable/manrope'
-import 'swiper/css'
 import './index.css'
+import { MotionConfig } from 'motion/react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
@@ -24,7 +24,9 @@ void enableMocking().then(() => {
     <StrictMode>
       <Provider store={store}>
         <ThemeSync />
-        <RouterProvider router={router} />
+        <MotionConfig reducedMotion="user">
+          <RouterProvider router={router} />
+        </MotionConfig>
       </Provider>
     </StrictMode>,
   )

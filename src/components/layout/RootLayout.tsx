@@ -1,4 +1,5 @@
 import { Outlet, ScrollRestoration, useNavigation } from 'react-router'
+import { IconGradientDefs } from '@/components/shared/GradientIcon'
 import { cn } from '@/lib/cn'
 import { Footer } from './Footer'
 import { Navbar } from './Navbar'
@@ -26,6 +27,7 @@ export function RootLayout() {
         )}
       />
 
+      <IconGradientDefs />
       <Navbar />
       <main id="main" tabIndex={-1} className="outline-none">
         <Outlet />

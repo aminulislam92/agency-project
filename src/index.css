@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+/* Third-party CSS goes in a layer below utilities so Tailwind classes always win */
+@import 'swiper/css' layer(components);
+@import 'swiper/css/effect-fade' layer(components);
 
 /* Class-based dark mode: <html class="dark"> */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -116,6 +119,7 @@
 
   /* ---- Layout ---------------------------------------------------------- */
   --container-site: 84rem; /* 1344px = 1296px content + 2 × 24px padding */
+  --container-wide: 90rem; /* 1440px — features row spans past the content column */
   --spacing-nav: 4.75rem; /* 76px navbar height */
   --blur-nav: 30px; /* navbar background blur */
 }
