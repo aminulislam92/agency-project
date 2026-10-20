@@ -1,13 +1,16 @@
-import { Container } from '@/components/ui/Container'
+import { NewsletterSignup } from './sections/NewsletterSignup'
+import { PostsGrid } from './sections/PostsGrid'
 
 export default function BlogPage() {
   return (
-    <section className="bg-hero pt-nav">
-      <Container className="py-24">
-        <title>Blog | Silicon</title>
-        <h1 className="text-h1">Blog</h1>
-        <p className="mt-4 text-body-l text-muted">This page is under construction.</p>
-      </Container>
-    </section>
+    <>
+      <title>Blog | Silicon</title>
+      <meta
+        name="description"
+        content="Articles on design, development, marketing and startups from the Silicon digital agency team."
+      />
+      <PostsGrid />
+      <NewsletterSignup />
+    </>
   )
 }

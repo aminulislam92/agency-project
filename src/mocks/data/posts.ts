@@ -12,6 +12,7 @@ import smartwatchBox from '@/assets/images/blog/smartwatch-box.webp'
 import tabletDrawing from '@/assets/images/blog/tablet-drawing.webp'
 import whiteKeyboard from '@/assets/images/blog/white-keyboard.webp'
 import womanLaptop from '@/assets/images/blog/woman-laptop.webp'
+import { slugify } from '@/lib/slug'
 import type { Author, Post, PostBlock, PostCategory } from '@/types'
 import { people } from './people'
 
@@ -260,14 +261,6 @@ const archiveSeeds: Seed[] = archive.map(([title, category], index) => ({
   image: archiveImages[index % archiveImages.length] ?? girlHeadphones,
   author: archiveAuthors[index % archiveAuthors.length] ?? people.ralphEdwards,
 }))
-
-export function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/&/g, 'and')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
-}
 
 export const posts: Post[] = [...seeds, ...archiveSeeds].map((seed, index) => ({
   id: `post-${index + 1}`,
