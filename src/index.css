@@ -2,6 +2,13 @@
 /* Third-party CSS goes in a layer below utilities so Tailwind classes always win */
 @import 'swiper/css' layer(components);
 @import 'swiper/css/effect-fade' layer(components);
+@import 'swiper/css/pagination' layer(components);
+
+/* Swiper accents follow the brand. Unlayered so they beat Swiper's own :root defaults. */
+:root {
+  --swiper-theme-color: var(--color-primary);
+  --swiper-pagination-bullet-inactive-color: var(--color-gray-500);
+}
 
 /* Class-based dark mode: <html class="dark"> */
 @custom-variant dark (&:where(.dark, .dark *));

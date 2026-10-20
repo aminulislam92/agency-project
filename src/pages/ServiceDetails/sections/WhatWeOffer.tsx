@@ -76,7 +76,7 @@ export function WhatWeOffer() {
             a11y={{ containerRoleDescriptionMessage: 'service offers carousel' }}
           >
             {OFFERS.map((offer) => (
-              <SwiperSlide key={offer.title} className="h-auto! pb-1">
+              <SwiperSlide key={offer.title} className="h-auto pb-1">
                 <div className="h-full rounded-lg bg-card p-6 shadow-card">
                   <OfferItem offer={offer} />
                 </div>

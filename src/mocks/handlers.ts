@@ -130,7 +130,7 @@ export const handlers = [
       id: crypto.randomUUID(),
       postSlug: slug,
       parentId: parent?.id ?? null,
-      replyTo: parent?.author.name,
+      replyTo: parent ? (body.replyTo ?? parent.author.name) : undefined,
       author: { name: body.name.trim(), avatar: '' },
       createdAt: new Date().toISOString(),
       text: body.text.trim(),

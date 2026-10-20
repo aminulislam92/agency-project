@@ -23,7 +23,7 @@ function threadFor(postSlug: string): Comment[] {
       postSlug,
       parentId: null,
       author: { name: 'Ralph Edwards', avatar: manRedBeard },
-      createdAt: '2021-09-09T12:48:00.000Z',
+      createdAt: '2021-09-09T12:48:00',
       text: 'Eget amet, ac scelerisque tellus sed. Sapien duis sit neque pulvinar. Est sit aenean nisl etiam donec mattis ut diam. Luctus massa eu nunc aliquam viverra tempus, eu amet, luctus. Ac faucibus vestibulum eu lacus. Ullamcorper sem ultrices tincidunt pharetra?',
     },
     {
@@ -40,7 +40,7 @@ function threadFor(postSlug: string): Comment[] {
       postSlug,
       parentId: null,
       author: { name: 'Cameron Williamson', avatar: womanRedhead },
-      createdAt: '2021-03-24T08:20:00.000Z',
+      createdAt: '2021-03-24T08:20:00',
       text: 'Mattis id ut sed arcu metus elit faucibus condimentum aliquam. Nam adipiscing diam et suspendisse. Sagittis massa maecenas laoreet nulla amet nunc sagittis, pulvinar neque. Duis imperdiet ipsum suspendisse massa lectus habitasse. Id ante volutpat hendrerit augue parturient eget. Ac vitae posuere leo morbi vitae at lectus. Nibh neque quam quis amet mattis sit. Faucibus risus at sit tempus ut.',
     },
   ]

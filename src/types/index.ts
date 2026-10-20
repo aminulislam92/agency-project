@@ -112,7 +112,10 @@ export interface Comment {
 
 export interface NewComment {
   postSlug: string
+  /** Thread root the reply is attached to (one level of nesting) */
   parentId?: string | null
+  /** Name shown as the @mention (the comment actually replied to) */
+  replyTo?: string
   name: string
   email: string
   text: string
