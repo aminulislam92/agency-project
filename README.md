@@ -218,4 +218,5 @@ These were chosen on purpose:
   from `design-reference/assets/images/misc`.
 - **Share buttons:** Google+ no longer exists, so a "Copy link" button replaces it.
 - Breadcrumbs show the real service or post title instead of "Single Service" or "Single Post".
-- The copyright year is the current year.
+- The copyright line reads "© <current year>. All rights reserved by Md. Aminul Islam" with a link
+  to the author (name and URL in `src/lib/config.ts`).

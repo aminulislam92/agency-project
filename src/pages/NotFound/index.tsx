@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { BiHomeAlt } from 'react-icons/bi'
 import { ButtonLink } from '@/components/ui/Button'
+import { Copyright } from '@/components/layout/Copyright'
 import { Container } from '@/components/ui/Container'
 import { BrokenRobot } from './BrokenRobot'
 
@@ -43,7 +44,7 @@ export default function NotFoundPage() {
 
       <Container className="pb-12">
         <p className="text-center text-body-s font-semibold text-muted lg:text-left">
-          © {new Date().getFullYear()}. All rights reserved. Silicon Template
+          <Copyright />
         </p>
       </Container>
     </main>

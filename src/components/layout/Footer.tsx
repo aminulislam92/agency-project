@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { Container } from '@/components/ui/Container'
+import { Copyright } from './Copyright'
 import { Logo } from '@/components/ui/Logo'
 import { NewsletterForm } from '@/components/shared/NewsletterForm'
 import { CONTACT_EMAIL } from '@/lib/config'
@@ -77,7 +78,7 @@ export function Footer() {
         </div>
 
         <p className="mt-18 text-body-xs text-muted">
-          © {new Date().getFullYear()}. All rights reserved. Silicon Template
+          <Copyright />
         </p>
       </Container>
     </footer>

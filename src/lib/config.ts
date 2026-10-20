@@ -17,3 +17,7 @@ export const CONTACT_ADDRESS = '2464 Royal Ln. Mesa, New Jersey 45463'
 
 /** Agency promo video (Home hero, About video section) */
 export const PROMO_VIDEO_URL = 'https://www.youtube-nocookie.com/embed/ScMzIvxBSi4'
+
+/** Site credit shown in the copyright line */
+export const AUTHOR_NAME = 'Md. Aminul Islam'
+export const AUTHOR_URL = 'https://www.facebook.com/aminulislam.developer'
