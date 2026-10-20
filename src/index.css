@@ -1,0 +1,226 @@
+@import 'tailwindcss';
+
+/* Class-based dark mode: <html class="dark"> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   Design tokens — values from design-reference/DESIGN_SPEC.md
+   The default Tailwind colour palette is cleared so only brand tokens exist.
+   ========================================================================== */
+@theme {
+  --font-sans: 'Manrope Variable', 'Manrope', ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Colours: raw palette ------------------------------------------- */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
+  --color-gradient-from: #6366f1;
+  --color-gradient-via: #8b5cf6;
+  --color-gradient-to: #d946ef;
+
+  --color-gray-100: #f3f6ff;
+  --color-gray-200: #eff2fc;
+  --color-gray-300: #e2e5f1;
+  --color-gray-400: #d4d7e5;
+  --color-gray-500: #b4b7c9;
+  --color-gray-600: #9397ad;
+  --color-gray-700: #565973;
+  --color-gray-800: #33354d;
+  --color-gray-900: #0b0f19;
+
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-warning: #ffba08;
+  --color-info: #4c82f7;
+
+  /* Social brand colours (icon hover states) */
+  --color-facebook: #1877f2;
+  --color-instagram: #e4405f;
+  --color-twitter: #1da1f2;
+  --color-linkedin: #0a66c2;
+  --color-youtube: #ff0000;
+  --color-dribbble: #ea4c89;
+  --color-google: #dd4b39;
+
+  /* ---- Colours: semantic (re-mapped for dark mode below) -------------- */
+  --color-surface: var(--color-white); /* page background            */
+  --color-surface-alt: var(--color-gray-100); /* tinted section bg   */
+  --color-card: var(--color-white); /* cards, panels, inputs          */
+  --color-subtle: var(--color-gray-200); /* icon tiles, chips       */
+  --color-heading: var(--color-gray-900);
+  --color-title: var(--color-gray-800); /* card titles, nav links     */
+  --color-body: var(--color-gray-700);
+  --color-muted: var(--color-gray-600);
+  --color-placeholder: var(--color-gray-500);
+  --color-border: var(--color-gray-300);
+  --color-input: var(--color-gray-400);
+  --color-inverse: var(--color-gray-900); /* dark bands (CTA)       */
+
+  /* ---- Typography ------------------------------------------------------ */
+  --text-display-1: 5rem; /* 80 */
+  --text-display-1--line-height: 1.3;
+  --text-display-1--font-weight: 800;
+  --text-display-2: 4.5rem; /* 72 */
+  --text-display-2--line-height: 1.3;
+  --text-display-2--font-weight: 800;
+  --text-display-3: 3rem; /* 48 — derived, responsive step for D1/D2 */
+  --text-display-3--line-height: 1.3;
+  --text-display-3--font-weight: 800;
+
+  --text-h1: 2.5rem; /* 40 */
+  --text-h1--line-height: 1.3;
+  --text-h1--font-weight: 800;
+  --text-h2: 2rem; /* 32 */
+  --text-h2--line-height: 1.3;
+  --text-h2--font-weight: 800;
+  --text-h3: 1.75rem; /* 28 */
+  --text-h3--line-height: 1.3;
+  --text-h3--font-weight: 800;
+  --text-h4: 1.5rem; /* 24 */
+  --text-h4--line-height: 1.4;
+  --text-h4--font-weight: 800;
+  --text-h5: 1.25rem; /* 20 */
+  --text-h5--line-height: 1.4;
+  --text-h5--font-weight: 800;
+  --text-h6: 1rem; /* 16 */
+  --text-h6--line-height: 1.4;
+  --text-h6--font-weight: 800;
+
+  --text-lead: 1.5rem; /* 24 */
+  --text-lead--line-height: 1.6;
+  --text-body-xl: 1.25rem; /* 20 */
+  --text-body-xl--line-height: 1.6;
+  --text-body-l: 1.125rem; /* 18 */
+  --text-body-l--line-height: 1.6;
+  --text-body-m: 1rem; /* 16 */
+  --text-body-m--line-height: 1.6;
+  --text-body-s: 0.875rem; /* 14 */
+  --text-body-s--line-height: 1.6;
+  --text-body-xs: 0.75rem; /* 12 */
+  --text-body-xs--line-height: 1.6;
+  --text-nav: 1rem; /* 16 / 600 */
+  --text-nav--line-height: 1.6;
+  --text-nav--font-weight: 600;
+
+  /* ---- Effects --------------------------------------------------------- */
+  --shadow-card: 0 2px 6.4px -1px rgb(19 16 34 / 0.03), 0 4.4px 12px -1px rgb(19 16 34 / 0.06);
+  --shadow-brand: 0 8px 18px -8px rgb(99 102 241 / 0.9);
+  --shadow-secondary: 0 8px 18px -8px rgb(19 16 34 / 0.15);
+  --shadow-md: 0 12px 16px 0 rgb(0 0 0 / 0.04);
+  --shadow-nav: 0 2px 6.4px -1px rgb(19 16 34 / 0.03), 0 4.4px 12px -1px rgb(19 16 34 / 0.06);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --container-site: 84rem; /* 1344px = 1296px content + 2 × 24px padding */
+  --spacing-nav: 4.75rem; /* 76px navbar height */
+  --blur-nav: 30px; /* navbar background blur */
+}
+
+/* Dark palette — DESIGN_SPEC.md §2 */
+.dark {
+  --color-surface: var(--color-gray-900);
+  --color-surface-alt: rgb(255 255 255 / 0.03);
+  --color-card: rgb(255 255 255 / 0.04);
+  --color-subtle: rgb(255 255 255 / 0.06);
+  --color-heading: var(--color-white);
+  --color-title: var(--color-white);
+  --color-body: var(--color-gray-600);
+  --color-muted: rgb(255 255 255 / 0.5);
+  --color-placeholder: rgb(255 255 255 / 0.4);
+  --color-border: rgb(255 255 255 / 0.14);
+  --color-input: rgb(255 255 255 / 0.18);
+  --color-inverse: #131022;
+  --shadow-card: 0 2px 6.4px -1px rgb(0 0 0 / 0.2), 0 4.4px 12px -1px rgb(0 0 0 / 0.3);
+  --shadow-nav: 0 4px 16px 0 rgb(0 0 0 / 0.4);
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   Custom utilities
+   ========================================================================== */
+@utility bg-brand-gradient {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-gradient-from) 0%,
+    var(--color-gradient-via) 50%,
+    var(--color-gradient-to) 100%
+  );
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-gradient-from) 0%,
+    var(--color-gradient-via) 50%,
+    var(--color-gradient-to) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Hero / page-header soft radial background (Home, About, Contact, 404) */
+@utility bg-hero {
+  background-color: var(--color-surface);
+  background-image:
+    radial-gradient(ellipse 70% 80% at 0% 0%, rgb(99 135 241 / 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 80% at 100% 100%, rgb(218 70 239 / 0.07) 0%, transparent 70%),
+    linear-gradient(135deg, rgb(99 135 241 / 0.06) 0%, rgb(218 70 239 / 0.05) 100%);
+}
+
+@utility focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  &:focus-visible {
+    outline-color: var(--color-primary);
+  }
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-surface font-sans text-body-m text-body antialiased;
+    transition: background-color 0.2s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-heading;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: rgb(99 102 241 / 0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+  <defs>
+    <linearGradient id="g" x1="4" y1="40" x2="42" y2="4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset=".5" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#D946EF"/>
+    </linearGradient>
+  </defs>
+  <path d="M14.5 2.5 31 3.8l10.2 12.6-2.6 17.2L23 42 7.4 36.4 2.6 19.6Z" fill="url(#g)"/>
+  <path d="M14.5 2.5 31 3.8 22 12Z" fill="#fff" fill-opacity=".18"/>
+  <path d="m23 42 15.6-8.4L20 30Z" fill="#000" fill-opacity=".18"/>
+  <text x="8.2" y="30.5" fill="#fff" font-family="Manrope, Arial, sans-serif" font-size="17" font-weight="800">Si</text>
+</svg>
