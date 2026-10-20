@@ -29,7 +29,7 @@ interface SocialButtonProps {
   href: string
   /** "outline": bordered tile (contact info). "subtle": filled tile (testimonials, share). */
   variant?: 'outline' | 'subtle'
-  size?: 'sm' | 'md'
+  size?: 'xs' | 'sm' | 'md'
   /** Accessible name override, e.g. "Share on Twitter" */
   label?: string
   className?: string
@@ -58,7 +58,7 @@ export function SocialButton({
       className={cn(
         'inline-flex shrink-0 items-center justify-center rounded-md text-title transition-all duration-200 hover:border-transparent hover:bg-(--brand) hover:text-white hover:shadow-[0_8px_18px_-8px_var(--brand)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
         variant === 'outline' ? 'border border-border bg-card' : 'bg-subtle',
-        size === 'md' ? 'size-11 text-xl' : 'size-9 text-base',
+        { md: 'size-11 text-xl', sm: 'size-9 text-base', xs: 'size-8 text-sm' }[size],
         className,
       )}
     >
