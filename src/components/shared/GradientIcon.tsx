@@ -19,11 +19,18 @@ export function IconGradientDefs() {
 }
 
 /** Boxicon filled with the brand gradient (feature icons). */
-export function GradientIcon({ icon: Icon, className }: { icon: IconType; className?: string }) {
+interface GradientIconProps {
+  icon: IconType
+  /** Size utility, e.g. "size-7" (kept separate so it never conflicts with className) */
+  size?: string
+  className?: string
+}
+
+export function GradientIcon({ icon: Icon, size = 'size-14', className }: GradientIconProps) {
   return (
     <Icon
       aria-hidden
-      className={cn('size-14', className)}
+      className={cn(size, className)}
       style={{ fill: `url(#${ICON_GRADIENT_ID})` }}
     />
   )

@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { BiSolidQuoteAltLeft } from 'react-icons/bi'
+import { BiChevronLeft, BiChevronRight, BiSolidQuoteAltLeft } from 'react-icons/bi'
 import type { Swiper as SwiperInstance } from 'swiper'
 import { A11y, EffectFade, Keyboard } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { ErrorState } from '@/components/ui/ErrorState'
+import { IconButton } from '@/components/ui/IconButton'
 import { Pagination } from '@/components/ui/Pagination'
 import { Rating } from '@/components/ui/Rating'
 import { Skeleton } from '@/components/ui/Skeleton'
@@ -60,11 +61,47 @@ function Slide({ testimonial }: { testimonial: Testimonial }) {
   )
 }
 
+/** Services layout: photo left, quote card right with author + company logo inside. */
+function MirroredSlide({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <figure className="grid gap-8 lg:grid-cols-[26rem_1fr] lg:gap-18">
+      <img
+        src={testimonial.photo}
+        alt={`${testimonial.author.name}, ${testimonial.author.role ?? ''}`}
+        width={416}
+        height={360}
+        loading="lazy"
+        className="aspect-[416/360] w-full rounded-lg object-cover"
+      />
+      <div className="relative mt-5 self-start rounded-lg bg-card px-6 pt-14 pb-8 shadow-card md:px-12 md:pt-16 md:pb-12">
+        <QuoteMark className="absolute -top-5 left-6 md:left-12" />
+        <blockquote className="text-body-m text-body md:text-body-l">
+          <p>{testimonial.quote}</p>
+        </blockquote>
+        <figcaption className="mt-8 flex items-center gap-6 md:mt-10">
+          <div className="py-2">
+            <p className="text-h5 whitespace-nowrap text-heading">{testimonial.author.name}</p>
+            <p className="text-body-s text-muted">{testimonial.author.role}</p>
+          </div>
+          <div className="flex self-stretch border-l border-border pl-6 text-gray-500">
+            <ClientLogo id={testimonial.company} className="my-auto h-6 sm:h-7" />
+          </div>
+        </figcaption>
+      </div>
+    </figure>
+  )
+}
+
+interface TestimonialSliderProps {
+  /** "numbered": card left + photo right, numbered pagination (Home). "arrows": photo left, prev/next under it (Services). */
+  variant?: 'numbered' | 'arrows'
+  className?: string
+}
+
 /**
- * Home "What They Say About Us": quote card + photo, numbered pagination under the card.
- * Built on Swiper (fade effect, keyboard + a11y modules).
+ * Testimonial carousel built on Swiper (fade effect, keyboard + a11y modules).
  */
-export function TestimonialSlider({ className }: { className?: string }) {
+export function TestimonialSlider({ variant = 'numbered', className }: TestimonialSliderProps) {
   const { data: testimonials, isLoading, isError, refetch } = useGetTestimonialsQuery()
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null)
   const [active, setActive] = useState(0)
@@ -103,18 +140,43 @@ export function TestimonialSlider({ className }: { className?: string }) {
       >
         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial.id}>
-            <Slide testimonial={testimonial} />
+            {variant === 'numbered' ? (
+              <Slide testimonial={testimonial} />
+            ) : (
+              <MirroredSlide testimonial={testimonial} />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
-      <Pagination
-        label="Testimonials"
-        itemName="testimonial"
-        page={active + 1}
-        totalPages={testimonials.length}
-        onChange={(page) => swiper?.slideTo(page - 1)}
-        className="mt-8 justify-center lg:absolute lg:bottom-9 lg:left-0 lg:z-10 lg:mt-0 lg:justify-start"
-      />
+      {variant === 'numbered' ? (
+        <Pagination
+          label="Testimonials"
+          itemName="testimonial"
+          page={active + 1}
+          totalPages={testimonials.length}
+          onChange={(page) => swiper?.slideTo(page - 1)}
+          className="mt-8 justify-center lg:absolute lg:bottom-9 lg:left-0 lg:z-10 lg:mt-0 lg:justify-start"
+        />
+      ) : (
+        <div className="mt-6.5 flex justify-center gap-4 lg:justify-start">
+          <IconButton
+            label="Previous testimonial"
+            size="sm"
+            disabled={active === 0}
+            onClick={() => swiper?.slidePrev()}
+          >
+            <BiChevronLeft aria-hidden />
+          </IconButton>
+          <IconButton
+            label="Next testimonial"
+            size="sm"
+            disabled={active === testimonials.length - 1}
+            onClick={() => swiper?.slideNext()}
+          >
+            <BiChevronRight aria-hidden />
+          </IconButton>
+        </div>
+      )}
     </div>
   )
 }

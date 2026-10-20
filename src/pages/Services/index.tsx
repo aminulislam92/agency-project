@@ -1,13 +1,20 @@
-import { Container } from '@/components/ui/Container'
+import { ClientsSay } from './sections/ClientsSay'
+import { GetInTouch } from './sections/GetInTouch'
+import { ServicesGrid } from './sections/ServicesGrid'
+import { WhyChooseUs } from './sections/WhyChooseUs'
 
 export default function ServicesPage() {
   return (
-    <section className="bg-hero pt-nav">
-      <Container className="py-24">
-        <title>Services | Silicon</title>
-        <h1 className="text-h1">Services</h1>
-        <p className="mt-4 text-body-l text-muted">This page is under construction.</p>
-      </Container>
-    </section>
+    <>
+      <title>Services | Silicon</title>
+      <meta
+        name="description"
+        content="Custom software development, integration, mobile apps, business analytics, testing and project management — explore Silicon's services."
+      />
+      <ServicesGrid />
+      <ClientsSay />
+      <WhyChooseUs />
+      <GetInTouch />
+    </>
   )
 }
