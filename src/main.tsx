@@ -19,15 +19,21 @@ async function enableMocking() {
 const rootElement = document.getElementById('root')
 if (!rootElement) throw new Error('Root element #root not found')
 
-void enableMocking().then(() => {
-  createRoot(rootElement).render(
-    <StrictMode>
-      <Provider store={store}>
-        <ThemeSync />
-        <MotionConfig reducedMotion="user">
-          <RouterProvider router={router} />
-        </MotionConfig>
-      </Provider>
-    </StrictMode>,
-  )
-})
+// Render even if the mock worker fails to load (e.g. a dropped network request):
+// API calls then surface through the components' error states instead of a blank page.
+void enableMocking()
+  .catch((error: unknown) => {
+    console.error('Mock API failed to start', error)
+  })
+  .finally(() => {
+    createRoot(rootElement).render(
+      <StrictMode>
+        <Provider store={store}>
+          <ThemeSync />
+          <MotionConfig reducedMotion="user">
+            <RouterProvider router={router} />
+          </MotionConfig>
+        </Provider>
+      </StrictMode>,
+    )
+  })

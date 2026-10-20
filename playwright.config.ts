@@ -1,14 +1,23 @@
 import { defineConfig, devices } from '@playwright/test'
 
+/*
+ * Tests run against a production build served by `vite preview`, with the MSW mock API
+ * enabled via `.env.e2e`. Unlike the dev server nothing is compiled on demand, so timing
+ * stays stable under parallel load — and the tests exercise what actually ships.
+ */
+const PORT = 4173
+
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
-  // The Vite dev server compiles routes on demand; keep load and timeouts realistic
   workers: 4,
   expect: { timeout: 10_000 },
+  // One retry absorbs transient browser network resets (seen locally as ERR_NETWORK_CHANGED);
+  // a genuine failure still fails twice and is reported.
+  retries: 1,
   reporter: [['list']],
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: `http://localhost:${PORT}`,
     trace: 'retain-on-failure',
   },
   projects: [
@@ -19,8 +28,10 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
   webServer: {
-    command: 'npm run dev -- --port 5173 --strictPort',
-    url: 'http://localhost:5173',
-    reuseExistingServer: true,
+    command: `npx vite build --mode e2e && npx vite preview --mode e2e --port ${PORT} --strictPort`,
+    url: `http://localhost:${PORT}`,
+    // Always rebuild so tests never run against a stale bundle
+    reuseExistingServer: false,
+    timeout: 180_000,
   },
 })

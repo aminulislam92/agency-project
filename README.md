@@ -194,6 +194,12 @@ navigation (sticky navbar, keyboard-accessible Services dropdown, mobile drawer,
 persistence, 404), each page's data rendering, filters, pagination and URL state, and every
 form (validation and successful submission against the mock API).
 
+The tests run against a **production build** (`vite build --mode e2e` + `vite preview` on
+port 4173). `.env.e2e` turns the mock API on for that build, so no backend is needed. Each test
+gets one retry to absorb transient browser network resets; a real failure still fails twice.
+Tests check behaviour rather than copy, so you can change contact details in
+`src/lib/config.ts` without breaking them.
+
 ## Accessibility
 
 - Semantic landmarks, a skip link, one `h1` per page, and alt text for meaningful images
